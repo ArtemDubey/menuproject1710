@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Реєстрація — Trattoria{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card">
+        <div class="auth-emoji">✨</div>
+        <h2>Створити акаунт</h2>
+        <p class="auth-subtitle">Приєднуйтесь до нашої італійської родини!</p>
+
+        <form method="POST" action="{{ url_for('registration') }}" class="auth-form">
+            <div class="form-group">
+                <label for="username">Ім'я користувача</label>
+                <input type="text" id="username" name="username" required placeholder="Ваше ім'я" class="auth-input">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Електронна пошта</label>
+                <input type="email" id="email" name="email" required placeholder="example@gmail.com" class="auth-input">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" required placeholder="••••••••" class="auth-input">
+            </div>
+
+            <button type="submit" class="auth-btn">Зареєструватися</button>
+        </form>
+
+        <div class="auth-footer-link">
+            <p>Вже маєте акаунт? <a href="{{ url_for('login') }}">Увійти</a></p>
+            <p style="margin-top: 10px;"><a href="{{ url_for('menu') }}" class="back-link">← На головну до меню</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

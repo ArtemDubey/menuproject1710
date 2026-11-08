@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Мій профіль — Trattoria{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+    <div class="profile-card">
+        <div class="profile-emoji">🌸</div>
+        <h2>Особистий кабінет</h2>
+        <p class="profile-subtitle">Ви знаходитесь на власному профілі сайту Trattoria ✨</p>
+
+        <div class="profile-info-box">
+            <div class="info-row">
+                <span class="info-label">Ім'я користувача:</span>
+                <span class="info-value">{{ current_user.username }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Електронна пошта:</span>
+                <span class="info-value">{{ current_user.email }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Роль:</span>
+                <span class="info-value role-badge">{{ current_user.role }}</span>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <a href="{{ url_for('menu') }}" class="back-btn">← Повернутися до меню</a>
+            <a href="{{ url_for('logout') }}" class="logout-btn">Вийти з акаунта</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

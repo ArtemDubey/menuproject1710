@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Замовлення прийнято — Trattoria{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+    <div class="profile-card" style="text-align: center; padding: 50px 30px;">
+        <div class="profile-emoji" style="font-size: 72px;">🎉</div>
+        <h2 style="margin-bottom: 12px;">Замовлення успішно оформлено!</h2>
+        <p class="profile-subtitle" style="font-size: 16px; margin-bottom: 30px;">
+            Ваше замовлення вже передано на кухню. Ми доставляємо його **якнайшвидше!** 🍕✨
+        </p>
+        
+        <div class="profile-actions">
+            <a href="{{ url_for('menu') }}" class="back-btn" style="background: linear-gradient(135deg, #ff85a1 0%, #e85d75 100%); color: #fff;">На головну сторінку</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

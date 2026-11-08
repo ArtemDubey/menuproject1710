@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Оформлення замовлення — Trattoria{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card" style="max-width: 580px;">
+        <div class="auth-emoji">🛵</div>
+        <h2>Оформлення доставки</h2>
+        <p class="auth-subtitle">Заповніть контактні дані</p>
+
+        {% if items %}
+        <div style="background: #fff0f3; border: 2px solid #ffb7c5; border-radius: 20px; padding: 15px; margin-bottom: 25px; text-align: left;">
+            <h4 style="font-family: 'Comfortaa', cursive; color: #3d3130; font-size: 15px; margin-bottom: 10px;">Ваше замовлення:</h4>
+            {% for item in items %}
+                <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; color: #6e5d5c;">
+                    <span>{{ item.dish.emoji }} {{ item.dish.name }} (×{{ item.quantity }})</span>
+                    <span style="font-weight: 700; color: #e85d75;">{{ item.subtotal }} грн</span>
+                </div>
+            {% endfor %}
+            <div style="border-top: 1px dashed #ffb7c5; margin-top: 10px; padding-top: 8px; display: flex; justify-content: space-between; font-weight: 800; color: #3d3130;">
+                <span>Сума:</span>
+                <span style="color: #e85d75;">{{ total_price }} грн</span>
+            </div>
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('delivery') }}" class="auth-form">
+            <div class="form-group">
+                <label for="full_name">Отримувач (ПІБ)</label>
+                <input type="text" id="full_name" name="full_name" required value="{{ current_user.username }}" class="auth-input">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Номер телефону</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+380XXXXXXXXX" class="auth-input">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Адреса доставки</label>
+                <input type="text" id="address" name="address" required placeholder="Місто, вулиця, будинок, квартира" class="auth-input">
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Коментар до замовлення</label>
+                <textarea id="comment" name="comment" placeholder="Наприклад: код домофону тощо" class="auth-input" style="height: 70px; resize: none;"></textarea>
+            </div>
+
+            <button type="submit" class="auth-btn">Підтвердити замовлення</button>
+        </form>
+
+        <div class="auth-footer-link" style="margin-top: 20px;">
+            <p><a href="{{ url_for('cart') }}" class="back-link">← Повернутися до кошика</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

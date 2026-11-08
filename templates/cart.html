@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Кошик — Trattoria{% endblock %}
+
+{% block content %}
+<div class="menu-page" style="max-width: 800px; margin: 0 auto;">
+    <h2 style="font-family: 'Comfortaa', cursive; text-align: center; margin-bottom: 30px; color: #3d3130;">🛒 Ваш кошик замовлень</h2>
+
+    {% if items %}
+        <div style="background: #fff; border-radius: 24px; padding: 25px; box-shadow: 0 10px 25px rgba(232, 93, 117, 0.05); border: 1px solid #ffe8ed; margin-bottom: 25px;">
+            {% for item in items %}
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px dashed #ffe3e8;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span style="font-size: 36px; background: #fff5f7; padding: 10px; border-radius: 16px;">{{ item.dish.emoji }}</span>
+                        <div>
+                            <h4 style="font-family: 'Comfortaa', cursive; font-size: 17px; color: #3d3130; margin-bottom: 4px;">{{ item.dish.name }}</h4>
+                            <p style="color: #9d8189; font-size: 14px;">Кількість: <b>{{ item.quantity }}</b> × {{ item.dish.price }} грн</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <span style="font-weight: 800; color: #e85d75; font-size: 18px;">{{ item.subtotal }} грн</span>
+                        <a href="{{ url_for('remove_from_cart', dish_id=item.dish.id) }}" style="color: #d90429; text-decoration: none; font-weight: bold; font-size: 18px;" title="Видалити">❌</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 25px; padding-top: 15px; border-top: 2px solid #ffe3e8;">
+                <span style="font-size: 18px; font-weight: 700; color: #6e5d5c;">Разом до сплати:</span>
+                <span style="font-size: 24px; font-weight: 800; color: #e85d75;">{{ total_price }} грн</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; display: flex; gap: 15px; justify-content: center;">
+            <a href="{{ url_for('menu') }}" class="back-btn">← Продовжити покупки</a>
+            <a href="{{ url_for('delivery') }}" class="auth-btn" style="padding: 12px 30px; text-decoration: none; display: inline-block; width: auto; margin-top: 0;">Оформити доставку 🛵</a>
+        </div>
+    {% else %}
+        <div style="text-align: center; padding: 50px 0;">
+            <div style="font-size: 64px; margin-bottom: 15px;">🛒</div>
+            <p style="color: #9d8189; font-size: 18px; font-weight: 600; margin-bottom: 20px;">Ваш кошик наразі порожній.</p>
+            <a href="{{ url_for('menu') }}" class="back-btn">Перейти до меню 🍕</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

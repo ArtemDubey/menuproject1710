@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Вхід — Trattoria{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card">
+        <div class="auth-emoji">🔑</div>
+        <h2>З поверненням!</h2>
+        <p class="auth-subtitle">Увійдіть до свого акаунта Trattoria</p>
+
+        <form method="POST" action="{{ url_for('login') }}" class="auth-form">
+            <div class="form-group">
+                <label for="email">Електронна пошта</label>
+                <input type="email" id="email" name="email" required placeholder="example@gmail.com" class="auth-input">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" required placeholder="••••••••" class="auth-input">
+            </div>
+
+            <button type="submit" class="auth-btn">Увійти</button>
+        </form>
+
+        <div class="auth-footer-link">
+            <p>Ще не маєте акаунта? <a href="{{ url_for('registration') }}">Зареєструватися</a></p>
+            <p style="margin-top: 10px;"><a href="{{ url_for('menu') }}" class="back-link">← На головну до меню</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Сторінку не знайдено — Trattoria{% endblock %}
+
+{% block content %}
+<div class="not-found-page" style="text-align: center; padding: 50px 0;">
+    <div style="font-size: 64px; margin-bottom: 20px;">🍲</div>
+    <h2>Аахаххахахах у тебе помилка Помилка 404</h2>
+    <p style="color: #666; margin-bottom: 20px;">На жаль, сторінку або страву, яку ви шукаєте, не знайдено.</p>
+    <a href="{{ url_for('menu') }}" class="back-btn" style="display: inline-block; padding: 10px 20px; background: #e67e22; color: #fff; text-decoration: none; border-radius: 5px;">На головну сторінку</a>
+</div>
+{% endblock %}

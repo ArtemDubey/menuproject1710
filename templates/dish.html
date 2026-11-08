@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ dish.name }} — Trattoria{% endblock %}
+
+{% block content %}
+<div class="dish-detail-page">
+    <div class="dish-detail-card">
+        <div class="dish-emoji large">{{ dish.emoji }}</div>
+        <div class="dish-detail-info">
+            <h2>{{ dish.name }}</h2>
+            <p class="dish-category">Категорія: <a href="{{ url_for('menu', slug=dish.category.slug) }}">{{ dish.category.name }}</a></p>
+            <p class="dish-desc-full">{{ dish.description }}</p>
+            <div class="dish-price-block">
+                <span class="dish-price large">{{ dish.price }} грн</span>
+            </div>
+
+            <div class="dish-actions" style="display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <a href="{{ url_for('menu') }}" class="back-btn">← Повернутися до меню</a>
+
+                {% if current_user.is_authenticated %}
+                    <form action="{{ url_for('add_to_cart', dish_id=dish.id) }}" method="POST">
+                        <button type="submit" class="auth-btn" style="padding: 12px 24px; margin-top: 0; cursor: pointer;">Додати в кошик 🛒</button>
+                    </form>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="back-btn" style="background: #fff0f3; color: #e85d75; border: 1px solid #ffb7c5;">Увійдіть для замовлення</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

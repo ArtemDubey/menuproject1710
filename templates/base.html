@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Trattoria ✨{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="header-auth">
+                {% if current_user.is_authenticated %}
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <a href="{{ url_for('cart') }}" class="header-btn register-link" style="background: #fff0f3; color: #e85d75; border: 2px solid #ffb7c5;">🛒 Кошик</a>
+                        <a href="{{ url_for('profile') }}" class="user-profile-badge">
+                            <span class="user-icon">👤</span>
+                            <span class="username-text">{{ current_user.username }}</span>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="auth-buttons">
+                        <a href="{{ url_for('login') }}" class="header-btn login-link">Увійти</a>
+                        <a href="{{ url_for('registration') }}" class="header-btn register-link">Реєстрація</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="header-brand">
+                <h1><a href="{{ url_for('menu') }}">🍕 Trattoria ✨</a></h1>
+                <p>🌸 Смачна італійська кухня для затишних моментів 🍝</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>✨ &copy; 2026 Trattoria • Зроблено з любов'ю 💖</p>
+        </div>
+    </footer>
+</body>
+</html>
